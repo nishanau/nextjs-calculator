@@ -15,9 +15,15 @@ const Calculator = () => {
     setResult(null);
   };
 
+  const sanitizeInput = (input) => {
+    // Remove leading zeros
+    return input.replace(/\b0+(\d)/g, '$1');
+  };
+
   const handleCalculate = () => {
     try {
-      setResult(eval(input));
+      const sanitizedInput = sanitizeInput(input);
+      setResult(eval(sanitizedInput));
     } catch (error) {
       setResult('Error');
     }
